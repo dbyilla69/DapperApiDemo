@@ -7,11 +7,10 @@ namespace DapperApiDemo.Services.Queries
 {
     public interface ICommandText
     {
-        string GetProducts { get; }
-        string GetProductById { get; }
-        string AddProduct { get; }
-        string UpdateProduct { get; }
-        string RemoveProduct { get; }
         string GetAllCategories { get; }
+        string GetCategoriesById { get; }
+        string AddCategories{ get; }
+        string UpdateCategories { get; }
+        string RemoveCategories { get; }
     }
 }

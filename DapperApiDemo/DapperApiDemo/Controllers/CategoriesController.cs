@@ -1,4 +1,5 @@
-﻿using DapperApiDemo.Services.Repositories;
+﻿using DapperApiDemo.Models;
+using DapperApiDemo.Services.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DapperApiDemo.Controllers
@@ -21,18 +22,33 @@ namespace DapperApiDemo.Controllers
             return Ok(productCategories);
         }
 
-        //private readonly IProductRepository _productRepository;
+        [HttpGet]
+        [Route("{categoriesId}")]
+        public ActionResult<Categories> GetById(int categoriesId)
+        {
+            var product = _categoriesRepository.GetById(categoriesId);
+            return Ok(product);
+        }
 
-        //public ProductController(IProductRepository productRepository)
-        //{
-        //    _productRepository = productRepository;
-        //}
+        [HttpPost]
+        public ActionResult AddProduct(Categories entity)
+        {
+            _categoriesRepository.AddCategory(entity);
+            return Ok(entity);
+        }
 
-        //[HttpGet]
-        //public ActionResult GellAll()
-        //{
-        //    var products = _productRepository.GetAllProducts();
-        //    return Ok(products);
-        //}
+        [HttpPut("{categoriesId}")]
+        public ActionResult<Categories> Update(Categories entity, int categoriesId)
+        {
+            _categoriesRepository.UpdateCategory(entity, categoriesId);
+            return Ok(entity);
+        }
+
+        [HttpDelete("{categoriesId}")]
+        public ActionResult<Categories> Delete(int categoriesId)
+        {
+            _categoriesRepository.RemoveCategory(categoriesId);
+            return Ok();
+        }
     }
 }
